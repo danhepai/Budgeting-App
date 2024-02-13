@@ -1,0 +1,16 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+<h3>Add Transaction</h3>
+
+<a href="{% url 'transactions' %}">Go back</a>
+
+<form method="post" action="">
+    {%csrf_token%}
+
+    {{form.as_p}}
+    <input type='submit' value="Submit">
+</form>
+
+{% endblock %}

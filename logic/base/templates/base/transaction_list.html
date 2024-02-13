@@ -1,0 +1,84 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+<h1 style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 20px;">
+    Transactions</h1>
+
+{% if request.user.is_authenticated %}
+        <p>Hello, {{request.user|title}}! Welcome to your favourite budgeting app!</p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #e5dfc3;
+                                         border-radius: 5px;
+                                         ">logout (you don't wanna logout, stay here!</button>
+        </form>
+<!--        <a href="{% url 'logout' %}">Logout</a>-->
+    {% else %}
+    <a href="{% url 'login' %}" style="background-color: #e5dfc3;
+                                         border-radius: 5px;
+                                         ">Login</a>
+    {% endif %}
+
+<hr>
+
+<a href="{% url 'add' %}" style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;">Add transaction</a>
+
+<table style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;">
+    <tr>
+        <th style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;">Your income:</th>
+    </tr>
+    {% for transaction in all_transactions %}
+    <tr>
+        <td style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;">
+            {% if transaction.amount >= 0 %}
+                {{transaction.category}} -> {{transaction.amount}} RON (DATE: {{transaction.created}})
+                <a href="{% url 'update' transaction.id %}">Edit</a>
+                <a href="{% url 'delete' transaction.id %}">Delete</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    {% endfor %}
+</table>
+
+<table style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;">
+    <tr>
+        <th style=" display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;">Your expenses:</th>
+    </tr>
+    {% for transaction in all_transactions %}
+    <tr>
+        <td>
+            {% if transaction.amount < 0 %}
+                {{transaction.category}} -> {{transaction.amount}} RON (DATE: {{transaction.created}})
+                <a href="{% url 'update' transaction.id %}">Edit</a>
+                <a href="{% url 'delete' transaction.id %}">Delete</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    {% endfor %}
+</table>
+
+{% endblock %}

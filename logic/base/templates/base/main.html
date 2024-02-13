@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>// ByeMoney -> A modern cool budgeting app</title>
+
+        <style>
+        body {
+            background-color: #242426;
+            font-family: 'American Typewriter', system-ui;
+        }
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background-color: #ffcf40; /* Gold background color */
+            padding: 100px;
+            padding-top: 80px;
+            align-content: center;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.15); /* Enhanced shadow for a pop effect */
+            color: #242426; /* Black text color */
+            transition: transform 0.2s; /* Add a subtle transition effect */
+        }
+
+        .container:hover {
+            transform: scale(1.02); /* Scale up on hover for a pop effect */
+        }
+
+        input[type=button], input[type=submit], input[type=reset] {
+            display: inline-block;
+            background-color: #242426;
+            padding: 5px;
+            width: 100px;
+            border-radius: 10px;
+            color: #ffcf40;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <section style="padding-top: 30px;
+                        padding-bottom: 30px">
+            <h1 style="
+                color: #ffcf40;
+                text-align: center;
+                font-family: 'American Typewriter', system-ui;
+            "
+            >
+                // Welcome to ByeMoney! Say bye to spending and hi to savings!💰
+            </h1>
+        </section>
+
+        <div class="container">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </body>
+</html>
